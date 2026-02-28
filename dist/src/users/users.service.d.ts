@@ -16,10 +16,51 @@ export declare class UsersService {
         password: string;
         firstName: string;
         lastName: string;
-    }): Promise<any>;
-    findById(id: string): Promise<any>;
-    findByIdWithHash(id: string): Promise<any>;
-    findByEmail(email: string): Promise<any>;
-    updateProfile(id: string, dto: UpdateUserDto): Promise<any>;
+    }): Promise<{
+        id: string;
+        email: string;
+        password: string;
+        firstName: string;
+        lastName: string;
+        refreshTokenHash: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findById(id: string): Promise<{
+        id: string;
+        email: string;
+        firstName: string;
+        lastName: string;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    findByIdWithHash(id: string): Promise<{
+        id: string;
+        email: string;
+        password: string;
+        firstName: string;
+        lastName: string;
+        refreshTokenHash: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    findByEmail(email: string): Promise<{
+        id: string;
+        email: string;
+        password: string;
+        firstName: string;
+        lastName: string;
+        refreshTokenHash: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    updateProfile(id: string, dto: UpdateUserDto): Promise<{
+        id: string;
+        email: string;
+        firstName: string;
+        lastName: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
     updateRefreshTokenHash(id: string, hash: string | null): Promise<void>;
 }

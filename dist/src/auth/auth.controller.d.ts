@@ -2,7 +2,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
-import { Request } from 'express';
+import type { Request } from 'express';
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);

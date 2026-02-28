@@ -3,7 +3,7 @@ import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 import { WarehouseQueryDto } from './dto/warehouse-query.dto';
 import { PaginatedResult } from '../common/interfaces/paginated-result.interface';
-import { Warehouse } from '../../generated/prisma';
+import type { Warehouse } from '@prisma/client';
 export declare class WarehousesService {
     private readonly prisma;
     constructor(prisma: PrismaService);

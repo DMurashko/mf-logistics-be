@@ -4,7 +4,7 @@ import { UpdateGoodDto } from './dto/update-good.dto';
 import { GoodQueryDto } from './dto/good-query.dto';
 import { WarehousesService } from '../warehouses/warehouses.service';
 import { PaginatedResult } from '../common/interfaces/paginated-result.interface';
-import { Good } from '../../generated/prisma';
+import type { Good } from '@prisma/client';
 export declare class GoodsService {
     private readonly prisma;
     private readonly warehousesService;

@@ -26,18 +26,35 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message =
         typeof exceptionResponse === 'string'
           ? exceptionResponse
-          : (exceptionResponse as Record<string, unknown>).message as
+          : ((exceptionResponse as Record<string, unknown>).message as
               | string
-              | string[];
+              | string[]);
+      this.logger.warn(
+        `${request.method} ${request.url} → ${status}: ${Array.isArray(message) ? message.join(', ') : message}`,
+      );
     } else if (this.isPrismaError(exception)) {
       const mapped = this.mapPrismaError(exception);
       status = mapped.status;
       message = mapped.message;
+      const prismaException = exception as {
+        code: string;
+        meta?: Record<string, unknown>;
+        message?: string;
+      };
+      this.logger.error(
+        `${request.method} ${request.url} → Prisma error ${prismaException.code}: ${message}` +
+          (prismaException.meta
+            ? ` | meta: ${JSON.stringify(prismaException.meta)}`
+            : '') +
+          (prismaException.message
+            ? ` | detail: ${prismaException.message}`
+            : ''),
+      );
     } else {
       status = HttpStatus.INTERNAL_SERVER_ERROR;
       message = 'Internal server error';
       this.logger.error(
-        `Unhandled exception: ${exception}`,
+        `${request.method} ${request.url} → Unhandled exception: ${exception}`,
         exception instanceof Error ? exception.stack : undefined,
       );
     }

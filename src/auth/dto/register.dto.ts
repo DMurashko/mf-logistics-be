@@ -5,11 +5,14 @@ import {
   MaxLength,
   Matches,
 } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class RegisterDto {
+  @ApiProperty({ example: 'user@example.com', description: 'The email of the user' })
   @IsEmail()
   email!: string;
 
+  @ApiProperty({ example: 'StrongP@ss1!', description: 'The password of the user' })
   @IsString()
   @MinLength(8)
   @MaxLength(64)
@@ -19,11 +22,13 @@ export class RegisterDto {
   })
   password!: string;
 
+  @ApiProperty({ example: 'John', description: 'The first name of the user' })
   @IsString()
   @MinLength(1)
   @MaxLength(100)
   firstName!: string;
 
+  @ApiProperty({ example: 'Doe', description: 'The last name of the user' })
   @IsString()
   @MinLength(1)
   @MaxLength(100)

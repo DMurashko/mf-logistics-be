@@ -1,0 +1,16 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: warehouse
+
+build:
+  artifacts:
+    - image: warehouse-backend
+      context: .
+
+manifests:
+  rawYaml:
+    - k8s/dev/*.yaml
+
+deploy:
+  kubectl: {}

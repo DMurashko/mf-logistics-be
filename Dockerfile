@@ -18,6 +18,8 @@ RUN pnpm prune --prod
 # Production stage
 FROM node:20-alpine
 
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 WORKDIR /app
 
 COPY --from=builder /app/dist ./dist

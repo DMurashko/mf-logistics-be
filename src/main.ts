@@ -51,4 +51,5 @@ async function bootstrap() {
   await app.listen(port);
   Logger.log(`Application running on port ${port}`, 'Bootstrap');
 }
-bootstrap();
+
+void bootstrap();
